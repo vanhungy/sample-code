@@ -1,0 +1,243 @@
+@import "inc/_fonts";
+@import "inc/_buttons";
+@import "inc/_colours";
+@import "inc/_shadows";
+@import "inc/_ie-transforms";
+@import "inc/_card-preview";
+@import "inc/_card-details";
+@import "inc/_paper-envelope";
+@import "compass/css3";
+
+@mixin create-options-tooltip() {
+
+  .options-tool-tip {
+
+    &.show {
+      display: block !important;
+    }
+
+    display: none;
+    padding: 5px;
+    position: absolute;
+    top: -15px;
+    left: 0px;
+    z-index: 2;
+    width: 101px;
+    text-align: left;
+    border: 1px solid $GREY;
+    @include border-radius(2px);
+    @include options-tooltip-shadow();
+    background-color: $WHITE;
+    background-image: none;
+
+    html.lt-ie9 & {
+      top: -18px;
+    }
+
+    .content {
+      overflow: hidden;
+      line-height: 1.2;
+    }
+
+    .title {
+      @include museo700();
+      font-weight: bold;
+      text-align: left !important;
+      overflow: hidden;
+    }
+
+    .options-close {
+      width: 24px;
+      height: 25px;
+      display: block;
+      background: url('/img/sprites-widgets.png') 0px -383px no-repeat;
+      position: absolute;
+      top: -11px;
+      left: 96px;
+      z-index: 3;
+      cursor: pointer;
+    }
+
+  }
+
+}
+
+@mixin selected-option() {
+
+  &.selected {
+
+    .icon {
+      border: 2px solid $GREEN;
+    }
+
+    .selected-icon {
+      background: url('/img/sprites.png') 0px 0px no-repeat;
+      height: 29px;
+      width: 28px;
+      position: absolute;
+      display: block;
+      top: 33px;
+      left: 95px;
+      z-index: 1;
+    }
+
+  }
+
+  .loading {
+
+    position: absolute;
+    width: 109px;
+    top: 2px;
+    height: 109px;
+    left: 2px;
+    background: rgb(255, 255, 255);
+    background: rgba(255, 255, 255, 0.9);
+    filter: alpha(opacity=70);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+
+    .spinner {
+      position: absolute;
+      top: 37px;
+      left: 38px;
+      background: url('/img/animated-gif/loading.gif') no-repeat 0px 0px;
+      height: 30px;
+      width: 30px;
+    }
+
+  }
+
+}
+
+@mixin create-options-info() {
+
+  .info {
+
+    text-align: center;
+    clear: left;
+
+    .zoom a {
+      color: $TURQUOISE;
+      text-decoration: none;
+    }
+
+    @include create-options-tooltip();
+
+  }
+
+  .color {
+
+    position: relative;
+
+    .title {
+      text-align: center;
+    }
+
+    .more-info {
+      background: url('/img/sprites.png') -35px -41px no-repeat;
+      height: 15px;
+      width: 16px;
+      display: inline-block;
+
+      html.lt-ie8 & {
+        position: relative;
+        top: -2px;
+      }
+
+    }
+
+  }
+
+}
+
+@mixin create-options-grid() {
+
+  ul.options {
+
+    display: inline-block;
+    margin-left: 4px;
+
+    li {
+
+      width: 115px;
+      height: 190px;
+      float: left;
+      position: relative;
+
+      &:first-child {
+        width: 100%;
+        float: none;
+        height: auto;
+        margin: 0px;
+
+        h2 {
+          text-align: left;
+          position: relative;
+          left: -6px;
+        }
+
+      }
+
+      &.even {
+        margin-left: 16px;
+      }
+
+      @include create-options-envelope-icons();
+      @include create-options-paper-icons();
+      @include selected-option();
+      @include create-options-info();
+
+    }
+
+  }
+
+}
+
+#options {
+
+  .page-title {
+
+    $offset: 12px;
+    padding-bottom: 23px - $offset;
+
+    h1 {
+      padding-top: $offset;
+    }
+  }
+
+  .card-preview-wide-column {
+
+    @include card-details();
+    @include generate-gallery-card-preview();
+
+    width: 600px;
+    padding: 0 20px 0;
+    display: block;
+    float: left;
+  }
+
+  .card-choice-accordion {
+
+    .top {
+      background-image: url('/img/accordion/top-pe-options.png');
+      padding-top: 20px;
+
+      html.lt-ie8 & {
+        overflow: hidden;
+      }
+
+    }
+
+    .footer {
+      background-image: url('/img/accordion/footer-designReview.png');
+      height: 96px;
+    }
+
+    @include create-options-grid();
+
+  }
+
+}
+
+
+
+

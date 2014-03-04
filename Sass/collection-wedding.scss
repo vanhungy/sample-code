@@ -1,0 +1,235 @@
+@import "inc/buttons";
+@import "inc/_fonts";
+@import "inc/_clearfix";
+@import "inc/colours";
+@import "inc/responsive";
+@import "compass/css3";
+
+#order-sample-form-boxout {
+    @include museo500;
+    border: 1px solid $WHITE;
+    background: #f4f4f4;
+    @include background-image(radial-gradient(rgba(100,100,100,0.1), rgba(0,0,0,0.08)));
+    margin-top: 20px;
+    
+    .section-seperator {
+        border: 0px;
+        border-top: 1px dashed $LIGHT_GREY;
+        border-bottom: 1px dashed $WHITE;
+        margin: 30px auto 20px;
+        width: 70%;
+    }
+}
+
+.order-sample-section {
+    @extend .clearfix;
+}
+
+#order-sample-steps {
+    $spriteY: 0px;
+
+    padding-top: 25px;
+    text-align: center;
+    
+    ol {
+        display: inline-block;
+        margin-top: 15px;
+    }
+    
+    li {
+        background: transparent;
+        display: block;
+        float: left;
+        margin-right: 30px;
+        position: relative;
+        padding: 0 0 10px 55px;
+    }
+    
+    .position {
+        background: url('/img/sprites/order-sample-blobs.png') no-repeat;
+        color: $WHITE;
+        display: block;
+        font-size: 28px;
+        line-height: 28px;
+        width: 50px;
+        height: 24px;
+        padding: 13px 0;
+        position: absolute;
+        left: 0px;
+    }
+    
+    .position-2 {
+        background-position: -58px $spriteY;
+    }
+    
+    .position-3 {
+        background-position: -118px $spriteY;
+    }
+    
+    .step {
+        display: block;
+        font-size: 16px;
+        line-height: 16px;
+        padding-top: 20px;
+    }
+    
+}
+
+#order-sample-forms {
+    background: url('/img/en-GB/weddings/wedding-sample-pack.png') -5px 0px no-repeat;
+    padding-left: 450px;
+    padding-bottom: 30px;
+    overflow: hidden;
+    
+    h2 {
+        text-align: left;
+    }
+    
+    fieldset {
+        margin: 0;
+        padding: 0;
+        
+        &.col-right {
+            padding-left: 140px;
+        }
+    }
+    
+    fieldset,
+    .form-field,
+    p {
+        clear: both;
+    }
+    
+    .form-field {
+        margin: 6px 0px;
+    }
+    
+    label {
+        display: block;
+        float: left;
+        font-size: 14px;
+        line-height: 14px;
+        padding-top: 12px;
+    }
+    
+    .text-fields label {
+        width: 140px;
+    }
+    
+    .text-fields input {
+        width: 250px;
+    }
+    
+    .checkbox-fields {
+        width: 250px;
+        margin: 10px 0 20px 140px;
+    }
+    
+    p {
+        font-size: 12px;
+        padding-top: 10px;
+    }
+    
+    a,
+    a:visited {
+        color: $TURQUOISE;
+    }
+    
+    a:hover,
+    a:focus {
+        color: $TURQUOISE_HOVER;
+        text-decoration: none;
+    }
+    
+    .widget {
+        clear: both;
+        margin: 14px 0px;
+        position: relative;
+        @extend .clearfix;
+    }
+    
+    form .form-container .widget input[type='checkbox'] {
+        position: absolute;
+        margin-top: 0px;
+        
+        + label {
+            background: none;
+            font-size: 12px;
+            padding-top: 0px;
+            margin-top: 0px;
+            height: auto;
+            
+            &:before {
+                content: '';
+                background: url("/img/sprites-widgets.png") 0px 0px no-repeat;
+                display: block;
+                height: 24px;
+                width: 24px;
+                position: absolute;
+                left: 0px;
+            }
+        }
+            
+        &:hover {
+            + label:before {
+                background-position: 0 -24px;
+            }
+        }
+        
+        &:checked {
+            + label:before {
+                background-position: 0 -96px;
+            }
+        }
+        
+        &:checked:hover {
+            + label:before {
+                background-position: 0 -120px;
+            }
+        }
+        
+        .lt-ie8 {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+  
+    @include button(".order-user-logged-in", 90%, auto, $buttonGreen-text, 10px, $buttonGreen-bg, $buttonGreen-bg-hover);
+    @include button(".order-submit", 170px, auto, $buttonGreen-text, 10px, $buttonGreen-bg, $buttonGreen-bg-hover);
+    
+    .order-user-logged-in {
+        height: 200px;
+        
+        a {
+            padding-bottom: 10px;
+        }
+    }
+    
+    .order-submit {
+        button {
+            padding: 10px;
+        }
+    }
+    
+    .switch-form {
+        display: none;
+    }
+    
+    @include response-max(890px) {
+        background: none;
+        padding-left: 20px;
+        
+        .checkbox-fields {
+            margin-left: 0px;
+        }
+    }
+}
+    
+#order-via-register .order-submit {
+    margin-top: 20px;
+}
+
+#order-via-login .order-submit {
+    margin-top: 10px;
+}

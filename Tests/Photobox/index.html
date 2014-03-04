@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Technical Test</title>
+        <link rel="stylesheet" type="text/css" href="resources/css/default.css"/>
+        <script data-main="scripts/main" src="scripts/require-jquery.js"></script>
+    </head>
+    <body>
+        <!--
+         1. pass w3c validated - http://validator.w3.org/check
+         2. Using javascript to create form elements
+         -->
+
+        <!--
+        1. browser testing on functionality
+        * chrome - latest version
+        * firefox - latest version
+        * internet explorer 7,8,9
+        * css stylings not working for older browsers, as we all know.. but could use pie css to create vml etc.
+        -->
+        <div id="chart_form_container">
+            <table>
+                <tr>
+                    <th>Categories</th>
+                    <th>Series one: </th>
+                    <th>Series two:</th>
+                </tr>
+            </table>
+            <button id="create_category">Create new row</button>
+            <button id="generate_chart">Generate Chart</button>
+        </div>
+        <div id="chart"></div>
+    </body>
+</html>

@@ -1,0 +1,113 @@
+{%- extends "WebBundle::layout.html.twig" -%}
+
+{% set wedding = getParameterByLocale('collection').wedding %}
+{% set occasion_categories = wedding.occasion_categories %}
+{% set more_about_blocks = wedding.more_about %}
+
+{% block content %}
+
+    {% include "WebBundle:Common/widgets:/_offer_code.html.twig"
+        with {
+        'id'          : 'wedding-offer-code',
+        'class'       : 'offer-code',
+        'translation' : 'collection.wedding.offer_code'
+        }
+    %}
+
+    {%- for imageName, route in wedding.carousel_routing -%}
+        {%- set carouselImages = carouselImages|merge(
+        [
+            {
+                'image' : imageName,
+                'caption' : ('collection.wedding.carousel.item.'~ route.translation ~ '.label')|trans|raw,
+                'title': ('collection.wedding.carousel.item.'~ route.translation ~ '.title')|trans,
+                'href' : route.href,
+                'target' : '_self',
+                'button' : {
+                    'class': 'button-large',
+                    'title': 'collection.wedding.carousel.get_started'|trans,
+                    'path' : route.href
+                }
+            }
+        ]
+        )
+        -%}
+
+    {%- endfor -%}
+
+    {% include "WebBundle::Common/widgets/_carousel.html.twig"
+
+    with {
+        'path'       : '/img/' ~ getLocale() ~ '/wedding/carousel/',
+        'extension'  : '.jpg',
+        'images'     : carouselImages,
+        'id'         : 'wedding-carousel',
+        'class'      : 'flexslider wedding-carousel',
+        'promoButton' : {
+           'href'   : '#order-sample-form',
+           'translation'  : 'collection.wedding.carousel.button.promo.title'|trans|raw
+         },
+        'beforeLoad' : {
+            'class': 'slides-before-load',
+            'image': 'image_0',
+            'caption' : 'collection.wedding.carousel.item.'~ wedding.carousel_routing.image_0.translation ~'.label'|trans|raw,
+            'title'   : 'collection.wedding.carousel.item.'~ wedding.carousel_routing.image_0.translation ~'.title'|trans|raw,
+            'href'    :  wedding.carousel_routing.image_0.href
+        }
+        }
+    %}
+
+<div id="collection-content" class="page-main-content">
+
+    {% if occasion_categories is not empty %}
+        <div id="wedding-collection" class="category-block-container category-block-section">
+            <h2>{{ 'collection.wedding.category_blocks.header'|trans }}</h2>
+
+            <ul>
+                {%- for category in occasion_categories -%}
+
+                    {% include 'WebBundle:Common/widgets/:_category_block.html.twig'
+                       with {
+                           'id'              : 'wedding-category-',
+                           'class'           : 'category',
+                           'translation'     : 'collection.wedding.category_blocks.',
+                           'image_directory' : '/wedding'
+                       }
+                    %}
+
+                {%- endfor -%}
+            </ul>
+        </div>
+    {% endif %}
+
+    {% if more_about_blocks is not empty %}
+        <div id="homepage-more-about" class="collection-section homepage-grid">
+            <h2>{{ 'collection.wedding.more_about_blocks.header'|trans }}</h2>
+
+            <ul>
+                {% set image_offsets = [
+                    [50, 28, 15, 35, 10],
+                    [10, 20, 30, 40, 60],
+                    [60, 20, 60]
+                ] %}
+                {%- for more_about in more_about_blocks -%}
+                    {% include 'WebBundle:Collection/widgets/:_parallax_block.html.twig'
+                    with {
+                    'image_directory' : 'img/collection/more_about_blocks/wedding/parallax/',
+                    'image_extension' : '.png',
+                    'translation'     : 'collection.wedding.more_about_blocks.',
+                    'class'           : 'more-about-item',
+                    'image_offset'    : image_offsets[loop.index0]
+                    }
+                    %}
+                {%- endfor -%}
+            </ul>
+
+        </div>
+    {% endif %}
+    
+    {%- include 'WebBundle:Collection/widgets/:_order_sample_form.html.twig' -%}
+
+</div>
+
+{% endblock %}

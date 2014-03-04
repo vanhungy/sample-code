@@ -1,0 +1,43 @@
+{#- common util can be included, which can use referenced in the twigs -#}
+{#- price util functions -#}
+{#- price_format is used to align currency in the right format when price is displayed -#}
+{%- macro price_format(symbol, currency_position, price) -%}
+    {%- if currency_position|lower == 'after' -%}
+        {{ price }}{{ symbol }}
+    {%- else -%}
+        {{ symbol }}{{ price }}
+    {%- endif -%}
+{%- endmacro -%}
+
+{# create basic create button - if required more complex page title then modify #}
+{%- macro create_button(options) -%}
+    {%- if options is not empty -%}
+        <div class="{{ options.class }}">
+            <a href="{{ options.path.href }}" id="{{ options.path.id }}" {%- if (options.dataEvents) -%} data-events="{{ options.dataEvents }}" {%- endif -%}>
+                {% if options.icon.pos == 'left' %}
+                    <span class="icon"></span>
+                {% endif %}
+                <span class="text">{{ options.title|trans }}</span>
+                {% if options.icon.pos == 'right' %}
+                    <span class="icon"></span>
+                {% endif %}
+            </a>
+        </div>
+    {%- endif -%}
+{%- endmacro -%}
+
+{# create basic page title - if required more complex page title then modify #}
+{%- macro create_page_title(options) -%}
+    {%- if options is not empty -%}
+        <div class="page-title">
+            <h1>{{ options.title }}</h1>
+        </div>
+    {%- endif -%}
+{%- endmacro -%}
+
+{# create table tr indicator for basket and confirmation page #}
+{%- macro create_table_tr_indicator(colspan) -%}
+    <tr class="border-indicator">
+        <td colspan="{{ colspan }}"></td>
+    </tr>
+{%- endmacro -%}

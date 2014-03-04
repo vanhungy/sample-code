@@ -1,0 +1,83 @@
+{#-
+API Example
+
+   with {
+    'path'       : '/img/locale/' ~ getLocale() ~ '/homepage/carousel/',
+    'extension'  : '.jpg',
+    'images'     : [
+        {
+         'image' : 'image_0',
+         'caption' : 'page.index.carousel.item.0.label'|trans|raw,
+         'title': 'page.index.carousel.item.0.title'|trans,
+         'href' : path('catalogue_index', {'category': routing.carousel_routing.image_1.category, 'occasion': routing.carousel_routing.image_1.occasion }),
+         'target' : "_self",
+         'button' : {
+                        'class': 'button-large',
+                        'title': 'page.index.carousel.get_started'|trans,
+                        'path' : {'href': path('catalogue_index', {'category': routing.carousel_routing.image_1.category, 'occasion': routing.carousel_routing.image_1.occasion }) } ,
+                        'icon' : {'pos' : 'right' }
+                    }
+    }],
+    'name'       : 'flexslider homepage-carousel',
+    'beforeLoad' : {
+                    'class': 'slides-before-load',
+                    'image': 'image_0',
+                    'caption' : 'page.index.carousel.item.0.label'|trans|raw,
+                    'title'   : "page.index.carousel.item.0.title",
+                    'href'  : path('catalogue_index', {'category': routing.carousel_routing.image_1.category, 'occasion': routing.carousel_routing.image_1.occasion })
+                  }
+   }
+-#}
+
+<div id="{{ id }}" class="{{ class }}">
+    <ul class="slides hide">
+        {%- for slide in images -%}
+            <li data-events="slide-{{ loop.index }}">
+                {%- if slide.href -%}
+                    <a href="{{ slide.href}}" target="{{ slide.target ? slide.target : '_self' }}" data-events="image" >
+                        <img src="{{ path ~ slide.image ~ extension }}" alt="" title="{{ slide.title|trans }}" />
+                    </a>
+                    <span class="flex-caption">
+                        {%- if slide.href -%}
+                            <a href="{{ slide.href }}" target="{{ slide.target ? slide.target : '_self' }}" data-events="text">
+                                <p>{{ slide.caption|trans|raw }}</p>
+                            </a>
+                        {% else %}
+                            <p>{{ slide.caption|trans|raw }}</p>
+                        {%- endif -%}
+                        {%- if slide.button -%}
+                            {{ util.create_button({
+                            'class': slide.button.class,
+                            'title': slide.button.title|trans,
+                            'path' : { 'href': slide.button.path },
+                            'icon' : slide.button.icon,
+                            'dataEvents' : 'button'
+                            }) }}
+                        {%- endif -%}
+                    </span>
+                {%- else -%}
+                    <img src="{{ path ~ slide.image ~ extension }}" alt="" title="{{ slide.title|trans }}" />
+                    <span class="flex-caption"> {{ slide.caption|trans|raw }}</span>
+                {%- endif -%}
+            </li>
+        {%- endfor -%}
+    </ul>
+    {#- before load of new carousel -#}
+    {%- if beforeLoad -%}
+        <div class="{{ beforeLoad.class }}">
+            <img src="{{ path ~ beforeLoad.image ~ extension }}" title="{{ beforeLoad.title|trans }}" />
+        </div>
+    {%- endif -%}
+
+    {#- promo button -#}
+    {% if promoButton %}
+        {% if promoButton.translation is not empty %}
+            <div class="sample-pack">
+                <a href="{{ promoButton.href }}" data-events="order-sample-form">
+                    <span>{{ promoButton.translation|trans }}</span>
+                </a>
+            </div>
+        {% endif %}
+    {% endif %}
+
+</div>

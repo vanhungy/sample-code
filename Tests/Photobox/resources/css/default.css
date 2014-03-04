@@ -1,0 +1,119 @@
+/* reset css default behaviors */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+/* end reset css default behaviors */
+
+
+body {
+    font-family: sans, sans-serif, arial;
+    font-size: 12px;
+    padding: 10px;
+}
+
+#container {
+    min-width: 100px;
+    height: 400px;
+    margin: 0 auto;
+}
+
+#category_drop_down, #generate_chart {
+    /*display: none;*/
+}
+
+#chart_form {
+    width: 100%;
+}
+
+#chart_form input {
+    text-indent: 3px;
+}
+
+table th {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#chart_form ol {
+    padding:0 0 0 21px;
+    margin: 0px;
+}
+
+input[type="number"]:focus {
+    background-color: orange;
+    color: #fff;
+}
+
+input[type="text"]:focus {
+    background-color: #cc1fc0;
+    color: #fff;
+}
+
+button {
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font: 14px/100% Arial, Helvetica, sans-serif;
+    padding: .5em 2em .55em;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.3);
+    -webkit-border-radius: .5em;
+    -moz-border-radius: .5em;
+    border-radius: .5em;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    color: #fef4e9;
+    border: solid 1px #da7c0c;
+    background: #f78d1d;
+    background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
+    background: -moz-linear-gradient(top,  #faa51a,  #f47a20);
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+button:active {
+    position: relative;
+    top: 1px;
+}
